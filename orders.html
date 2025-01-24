@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Order</title>
+    <style>
+        /* Add some basic styling for the order page */
+        .order-container {
+            padding: 20px;
+        }
+
+        .order-item {
+            border-bottom: 1px solid #ddd;
+            padding: 10px 0;
+        }
+
+        .order-item img {
+            width: 100px;
+            height: auto;
+            object-fit: cover;
+            margin-right: 10px;
+        }
+
+        .order-item-details {
+            display: flex;
+            align-items: center;
+        }
+
+        .order-item-details h3 {
+            margin: 0;
+        }
+
+        .order-item-details p {
+            margin: 5px 0;
+        }
+
+        .total-price {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .back-btn {
+            background-color: #f028df;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .back-btn:hover {
+            background-color: goldenrod
+        }
+    </style>
+</head>
+<body>
+    <div class="order-container">
+        <h1>Your Order</h1>
+        <div id="orderItems"></div>
+        <div class="total-price" id="totalPrice"></div>
+
+        <!-- Back Button -->
+        <button class="back-btn" onclick="goBack()">Back</button>
+    </div>
+
+    <script>
+        // Retrieve the cart data from localStorage
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+        function displayOrderItems() {
+            const orderItemsContainer = document.getElementById("orderItems");
+            orderItemsContainer.innerHTML = "";  // Clear any previous content
+
+            let totalPrice = 0;
+
+            cart.forEach(product => {
+                const orderItem = document.createElement("div");
+                orderItem.classList.add("order-item");
+
+                orderItem.innerHTML = `
+                    <div class="order-item-details">
+                        <img src="${product.imageUrl}" alt="${product.title}">
+                        <div>
+                            <h3>${product.title}</h3>
+                            <p>₹${product.price.toFixed(2)}</p>
+                        </div>
+                    </div>
+                `;
+
+                orderItemsContainer.appendChild(orderItem);
+                totalPrice += product.price;
+            });
+
+            // Display the total price
+            const totalPriceElement = document.getElementById("totalPrice");
+            totalPriceElement.textContent = `Total: ₹${totalPrice.toFixed(2)}`;
+        }
+
+        // Function to go back to the previous page
+        function goBack() {
+            window.history.back();  // This will take the user back to the previous page in the browser's history
+        }
+
+        // Call the function to display cart items on page load
+        displayOrderItems();
+    </script>
+</body>
+</html>

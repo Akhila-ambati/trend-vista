@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fashion App - Home</title>
+    <style>
+    
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        
+        .header {
+            background-color: #f028df;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 24px;
+        }
+
+
+
+
+          /* Profile Icon Button */
+          .profile-btn {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: #fff;
+            border: none;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .profile-btn i {
+            font-size: 20px;
+            color: black;
+        }
+
+
+
+
+
+        .categories {
+            display: flex;
+            justify-content: center;
+            padding: 10px;
+            background-color: #fff;
+            margin-top: 20px;
+            border-bottom: 2px solid #ddd;
+        }
+
+        .category-btn {
+            background-color: #f028df;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+            font-size: 16px;
+        }
+
+        .category-btn:hover {
+            background-color: goldenrod;
+        }
+
+        .search-bar {
+            display: flex;
+            justify-content: center;
+            padding: 10px;
+        }
+
+        .search-bar input {
+            width: 60%;
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .search-bar button {
+            padding: 10px;
+            font-size: 16px;
+            margin-left: 10px;
+            background-color: #f028df;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .search-bar button:hover {
+            background-color: goldenrod;
+        }
+
+        .product-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .product-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            text-align: center;
+            height: 350px;
+        }
+
+        .product-card img {
+            max-width: 100%;
+            height: 200px;
+            object-fit: contain;
+            border-radius: 10px;
+        }
+
+        .product-card h3 {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+
+        .product-card p {
+            font-size: 16px;
+            color: #555;
+        }
+
+        .product-card button {
+            background-color: goldenrod;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 100%;
+        }
+
+        .product-card button:hover {
+            background-color: #f028df;
+        }
+
+        .cart-btn, .favorites-btn {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            background-color: goldenrod;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .cart-btn:hover, .favorites-btn:hover {
+            background-color: #B37AC7;
+        }
+
+        .buttons-container {
+            position: fixed;
+            bottom: 15px;
+            left: 15px;
+            display: flex;
+            gap: 10px;
+        }
+
+
+        /* ============================================================================== */
+         /* Media Queries for Responsiveness */
+         @media (max-width: 1200px) {
+            .product-container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 900px) {
+            .product-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .search-bar input {
+                width: 50%;
+            }
+
+            .search-bar button {
+                width: 40%;
+            }
+
+            .cart-btn, .favorites-btn {
+                font-size: 14px;
+                padding: 10px 16px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .header {
+                font-size: 20px;
+                padding: 10px;
+            }
+
+            .category-btn {
+                font-size: 14px;
+                padding: 8px 16px;
+            }
+
+            .product-container {
+                grid-template-columns: 1fr;
+            }
+
+            .search-bar input {
+                width: 70%;
+            }
+
+            .search-bar button {
+                width: 25%;
+            }
+
+            .cart-btn, .favorites-btn {
+                font-size: 12px;
+                padding: 8px 14px;
+            }
+        }
+
+
+    .footer {
+        text-align: center;
+        margin-top: 50px;
+        padding: 20px;
+        background-color:  #f028df;
+        color: white;
+    }
+
+    .footer a {
+        color: white;
+        text-decoration: none;
+    }
+
+    .footer a:hover {
+        text-decoration: underline;
+    }
+</style>
+   
+</head>
+<body>
+  
+    <div class="header">
+        TREND VISTA
+
+
+
+        <!-- Profile Photo Button -->
+<button class="profile-btn" onclick="goToProfile()">
+    <img src="logo.png" alt="Profile" style="width: 40px; height: 40px; border-radius: 50%;">
+</button>
+    </div>
+
+
+
+    <!-- Categories Section -->
+    <div class="categories">
+        <button class="category-btn" onclick="filterByCategory('men')">Men</button>
+        <button class="category-btn" onclick="filterByCategory('women')">Women</button>
+        <button class="category-btn" onclick="filterByCategory('all')">All</button>
+    </div>
+
+    <!-- Search Bar Section -->
+    <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search products..." onkeyup="searchProducts()">
+        <button onclick="searchProducts()">Search</button>
+    </div>
+
+    <!-- Product List -->
+    <div class="product-container" id="productContainer"></div>
+
+    <!-- Buttons for Cart and Favorites -->
+    <div class="buttons-container">
+        <button class="cart-btn" onclick="goToCart()"><i class="fas fa-shopping-cart"></i> Cart</button>
+        <button class="favorites-btn" onclick="goToFavorites()"><i class="fas fa-heart"></i> Favorites</button>
+    </div>
+
+    <script>
+        const products = [
+            { id: 1, title: 'The North Face Jacket', price: 309.99, imageUrl: 'https://i.pinimg.com/736x/cd/35/db/cd35db3c562496fc940acaf129f8b307.jpg', category: 'men' },
+            { id: 2, title: 'Brown Coat', price: 449.99, imageUrl: 'https://images.news18.com/ibnlive/uploads/2021/10/230501300_225135769493973_7511578339057365734_n.jpg', category: 'women' },
+            { id: 3, title: 'Black Hoodie', price: 175.5, imageUrl: 'https://m.media-amazon.com/images/I/31xvNVFCgYL._AC_UY1100_.jpg', category: 'men' },
+            { id: 4, title: 'Nike Running Shoes', price: 59.99, imageUrl: 'https://th.bing.com/th/id/OIP.pYwUMdRLLjjvATjgjqU5agHaHa?rs=1&pid=ImgDetMain', category: 'men' },
+            { id: 5, title: 'Louis Vuitton Handbag', price: 939.99, imageUrl: 'https://cdn1.jolicloset.com/img4/detail4b/2023/02/785099-1/handbags-louis-vuitton.jpg', category: 'women' },
+            { id: 6, title: 'Red Nike Sneakers', price: 179.99, imageUrl: 'https://i.ebayimg.com/images/g/uLYAAOSwUb9k3SJu/s-l1200.jpg', category: 'men' },
+            { id: 7, title: 'Black Oversized T-shirt', price: 79.99, imageUrl: 'https://prabhubhakti.com/cdn/shop/files/samast_handsome_indian_male_model_black_oversized_tshirt_jeans__54bc3b43-c17d-4608-b861-f73aa184df41_956x.png?v=1710142661', category: 'men' },
+            { id: 8, title: 'Louis Vuitton Handbag', price: 939.99, imageUrl: 'https://in.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-neonoe-mm--M45555_PM2_Front%20view.jpg', category: 'women' },
+            { id: 9, title: 'Light Yellow Hoodie', price: 145.0, imageUrl: 'https://i.pinimg.com/736x/95/d7/22/95d7222f6601475ea4251a085770e8e6.jpg', category: 'men' },
+            { id: 10, title: 'Girl Outfit', price: 839.99, imageUrl: 'https://i.pinimg.com/736x/51/ca/5e/51ca5e74dcfc8a7cc5bccbc89dbe8cdb.jpg', category: 'women' },
+            { id: 11, title: 'Men Uniforms', category: 'men', price: 1199.99, imageUrl: 'https://5.imimg.com/data5/PS/HT/PT/SELLER-3185135/purple-plain-readymade-uniform-shirts-for-corporate-staff-t445490-500x500.jpg', isNew: false, isTrending: false, description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate ratione sint, minima itaque maxime facilis necessitatibus aliquam veritatis, possimus sapiente esse aspernatur atque harum laboriosam consequatur quam pariatur, doloremque expedita.' },
+{ id: 12, title: 'Black Jacket', category: 'women', price: 499.99, imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXHangxglG4W9ycrTpOY4BY-owf77EZf3qkA&s', imageUrl2: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeJFOwXyMLnec2IDaAe9B7XwYPLUI2FqXMwg&s', isNew: true, isTrending: true, description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate ratione sint, minima itaque maxime facilis necessitatibus aliquam veritatis, possimus sapiente esse aspernatur atque harum laboriosam consequatur quam pariatur, doloremque expedita.' },
+{ id: 13, title: 'Women Coat and Pants', category: 'women', price: 1499.99, imageUrl: 'https://www.powersutra.co/cdn/shop/files/1726566540467_2048x.jpg?v=1726566643', imageUrl2: 'https://www.jiomart.com/images/product/original/rvtinvsynw/popwings-women-casual-dark-green-3-pieces-co-ords-top-blazer-and-trousers-set-women-coat-trousers-set-women-waistcoat-trousers-set-product-images-rvtinvsynw-2-202312132026.jpg?im=Resize=(500,630)', isNew: true, isTrending: false, description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate ratione sint, minima itaque maxime facilis necessitatibus aliquam veritatis, possimus sapiente esse aspernatur atque harum laboriosam consequatur quam pariatur, doloremque expedita.' },
+{ id: 14, title: 'Fully Jeans Outfit', category: 'men', price: 900.0, imageUrl: 'https://cdnz.blacklapel.com/thecompass/2023/11/how-to-style-mens-jeans.jpg', imageUrl2: 'https://images.bewakoof.com/utter/content/2726/content_Jeans_jackets.jpg', isNew: true, isTrending: false, description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate ratione sint, minima itaque maxime facilis necessitatibus aliquam veritatis, possimus sapiente esse aspernatur atque harum laboriosam consequatur quam pariatur, doloremque expedita.' },
+{ id: 15, title: 'Red Shirt', category: 'women', price: 20, imageUrl: 'https://img.tatacliq.com/images/i19//437Wx649H/MP000000023346449_437Wx649H_202408180206561.jpeg' },
+{ id: 16, title: 'Blue Pants', category: 'men', price: 30, imageUrl: 'https://www.jiomart.com/images/product/original/rveynipnqw/ad-av-men-royal-blue-solid-synthetic-single-formal-trousers-product-images-rveynipnqw-0-202206250036.jpg?im=Resize=(500,630)' },
+{ id: 17, title: 'Black Jacket', category: 'men', price: 50, imageUrl: 'https://assets.ajio.com/medias/sys_master/root/20240913/VqL1/66e415a46f60443f31786865/-473Wx593H-700419349-black-MODEL.jpg' },
+{ id: 18, title: 'Sunglasses', category: 'women', price: 15, imageUrl: 'https://m.media-amazon.com/images/I/81MPdLzZnaL._AC_UY1100_.jpg' },
+{ id: 1, title: ' Jacket', price: 309.99, imageUrl: 'https://www.voganow.com/cdn/shop/files/BBGJ-1108-014_2_copy.jpg?v=1702101740&width=360', category: 'men' },
+            { id: 2, title: 'black Coat', price: 449.99, imageUrl: 'https://www.rw-co.com/on/demandware.static/-/Sites-Rwco-master-catalog/default/dw88217676/images/large/rwco_484008_1_0.jpg', category: 'women' },
+            { id: 3, title: 'Black Hoodie', price: 175.5, imageUrl: 'https://m.media-amazon.com/images/I/31xvNVFCgYL._AC_UY1100_.jpg', category: 'men' },
+            { id: 4, title: 'Nike Running Shoes', price: 59.99, imageUrl: 'https://th.bing.com/th/id/OIP.pYwUMdRLLjjvATjgjqU5agHaHa?rs=1&pid=ImgDetMain', category: 'men' },
+            { id: 5, title: 'Louis Vuitton Handbag', price: 939.99, imageUrl: 'https://i.pinimg.com/736x/60/f8/84/60f884322d3602b697db232037f94fc4.jpg', category: 'women' },
+            { id: 6, title: 'Red Nike Sneakers', price: 179.99, imageUrl: 'https://i.ebayimg.com/images/g/uLYAAOSwUb9k3SJu/s-l1200.jpg', category: 'men' },
+            { id: 7, title: 'Black Oversized T-shirt', price: 79.99, imageUrl: 'https://prabhubhakti.com/cdn/shop/files/samast_handsome_indian_male_model_black_oversized_tshirt_jeans__54bc3b43-c17d-4608-b861-f73aa184df41_956x.png?v=1710142661', category: 'men' },
+            { id: 8, title: 'Louis Vuitton Handbag', price: 939.99, imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQoxWFlR1HJmtFVb5SzwFOl3LDNxNSGQwQp4A&s', category: 'women' },
+            { id: 9, title: 'Hoodie', price: 145.0, imageUrl: 'https://campussutra.com/cdn/shop/products/AWIN21_HHH_M_PLN_BLGR_F.webp?v=1661863853', category: 'men' },
+            { id: 10, title: 'Girl Outfit', price: 839.99, imageUrl: 'https://i.pinimg.com/736x/e9/ec/3c/e9ec3c4081eb1d45d5bad6ee462330b8.jpg', category: 'women' },
+            { id: 11, title: 'Men Uniforms', category: 'men', price: 1199.99, imageUrl: 'https://5.imimg.com/data5/PS/HT/PT/SELLER-3185135/purple-plain-readymade-uniform-shirts-for-corporate-staff-t445490-500x500.jpg', isNew: false, isTrending: false, description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate ratione sint, minima itaque maxime facilis necessitatibus aliquam veritatis, possimus sapiente esse aspernatur atque harum laboriosam consequatur quam pariatur, doloremque expedita.' },
+{ id: 12, title: 'Black Jacket', category: 'women', price: 499.99, imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXHangxglG4W9ycrTpOY4BY-owf77EZf3qkA&s', imageUrl2: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeJFOwXyMLnec2IDaAe9B7XwYPLUI2FqXMwg&s', isNew: true, isTrending: true, description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate ratione sint, minima itaque maxime facilis necessitatibus aliquam veritatis, possimus sapiente esse aspernatur atque harum laboriosam consequatur quam pariatur, doloremque expedita.' },
+{ id: 13, title: 'Women Coat and Pants', category: 'women', price: 1499.99, imageUrl: 'https://www.powersutra.co/cdn/shop/files/1726566540467_2048x.jpg?v=1726566643', imageUrl2: 'https://www.jiomart.com/images/product/original/rvtinvsynw/popwings-women-casual-dark-green-3-pieces-co-ords-top-blazer-and-trousers-set-women-coat-trousers-set-women-waistcoat-trousers-set-product-images-rvtinvsynw-2-202312132026.jpg?im=Resize=(500,630)', isNew: true, isTrending: false, description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate ratione sint, minima itaque maxime facilis necessitatibus aliquam veritatis, possimus sapiente esse aspernatur atque harum laboriosam consequatur quam pariatur, doloremque expedita.' },
+{ id: 14, title: 'Fully Jeans Outfit', category: 'men', price: 900.0, imageUrl: 'https://cdnz.blacklapel.com/thecompass/2023/11/how-to-style-mens-jeans.jpg', imageUrl2: 'https://images.bewakoof.com/utter/content/2726/content_Jeans_jackets.jpg', isNew: true, isTrending: false, description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate ratione sint, minima itaque maxime facilis necessitatibus aliquam veritatis, possimus sapiente esse aspernatur atque harum laboriosam consequatur quam pariatur, doloremque expedita.' },
+{ id: 15, title: 'Red Shirt', category: 'women', price: 20, imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4JCQpkSuSoVDjYGK1o0j95-xJeKbGdmv69JpP3RoeYluHyOZQ9J86s-omaECYBNwO9Q8&usqp=CAU' },
+{ id: 16, title: 'Blue Pants', category: 'men', price: 30, imageUrl: 'https://www.jiomart.com/images/product/original/rveynipnqw/ad-av-men-royal-blue-solid-synthetic-single-formal-trousers-product-images-rveynipnqw-0-202206250036.jpg?im=Resize=(500,630)' },
+{ id: 17, title: 'Black Jacket', category: 'men', price: 50, imageUrl: 'https://assets.ajio.com/medias/sys_master/root/20240913/VqL1/66e415a46f60443f31786865/-473Wx593H-700419349-black-MODEL.jpg' },
+{ id: 18, title: 'Sunglasses', category: 'women', price: 15, imageUrl: 'https://m.media-amazon.com/images/I/81MPdLzZnaL._AC_UY1100_.jpg' },
+{ id: 19, title: 'Fancy Saree Red', category: 'women', price: 500, imageUrl: 'https://shubhkalastore.com/cdn/shop/files/Cherry-Red_Fancy-Designer-Wedding-collection-For-Woven-Saree-With-Cherry-Red-Blouse_TF-29018_1.webp?v=1716461659' },
+{ id: 20, title: 'Fancy Saree Black', category: 'women', price: 1500, imageUrl: 'https://assets2.andaazfashion.com/media/catalog/product/b/l/black-satin-silk-lace-embroidered-fancy-saree-sarv164863-1_1.jpg' },
+{ id: 21, title: 'Fancy Saree Gold', category: 'women', price: 2150, imageUrl: 'https://cdn.sareesaga.com/image/cache/product-2024/gold-silk-festival-designer-saree-252875-1000x1375.jpg' },
+{ id: 22, title: 'Fancy Saree Maroon', category: 'women', price: 800, imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2Cw-EAsDCvcOxlTp_mYGa38jud5wzFlv1Gw&s' },
+{ id: 23, title: 'Black Kurthi Set', category: 'women', price: 650, imageUrl: 'https://monamaar.com/cdn/shop/files/0M1A8906.jpg?v=1693221804' },
+{ id: 24, title: 'Red Kurthi Set', category: 'women', price: 550, imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmJ-9adfj53Qyn9TJixgrTve7syHXOSW3ZAQ&s' },
+{ id: 25, title: 'Black Lahenga', category: 'women', price: 3500, imageUrl: 'https://imagesvs.oneindia.com/ph-big/2023/01/actress-anupama-parameswaran-new-stunning-look-in-black-lehenga-is-viral-on-social-media_167507946240.jpg' },
+{ id: 26, title: 'Red Scarf', category: 'women', price: 150, imageUrl: 'https://www.kashmirbox.com/cdn/shop/products/KB1871_20_1.jpg?v=1613367995&width=1500' },
+{ id: 27, title: 'Black scarf', category: 'women', price: 205, imageUrl: 'https://m.media-amazon.com/images/I/31bQBvVby0L._AC_UY1100_.jpg' },
+{ id: 28, title: 'Yellow Shirt', category: 'men', price: 399, imageUrl: 'https://rukminim3.flixcart.com/image/850/1000/xif0q/shirt/h/r/s/m-c1273-gespo-original-imafw2gzupzfaqdg-bb.jpeg?q=90&crop=false' },
+{ id: 29, title: 'White Shirt', category: 'men', price: 599, imageUrl: 'https://www.beyoung.in/api/cache/catalog/products/shirt_squre_image_update_14_3_2022/white_cotton_solid_shirts_for_men_base_02_05_2024_700x933.jpg' },
+{ id: 30, title: 'Maroon Shirt', category: 'men', price: 599, imageUrl: 'https://rukminim2.flixcart.com/image/850/1000/xif0q/shirt/n/f/c/xl-plain-7-maroon-cheapshirts-original-imaghrah4htfr3qy.jpeg?q=90&crop=false' },
+
+        ];
+
+ let cart = JSON.parse(localStorage.getItem("cart")) || [];
+ let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+        function displayProducts(filteredProducts = products) {
+            const productContainer = document.getElementById("productContainer");
+            productContainer.innerHTML = ""; 
+            filteredProducts.forEach(product => {
+                const productCard = document.createElement("div");
+                productCard.classList.add("product-card");
+
+                productCard.innerHTML = `
+                    <img src="${product.imageUrl}" alt="${product.title}">
+                    <h3>${product.title}</h3>
+                    <p>₹${product.price.toFixed(2)}</p>
+                    <button onclick="addToCart(${product.id})"><i class="fas fa-shopping-cart"></i>Add to Cart</button>
+                    <button onclick="addToFavorites(${product.id})"><i class="fas fa-heart"></i> Add to Favorites</button>
+                `;
+                productContainer.appendChild(productCard);
+            });
+        }
+
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            cart.push(product);
+            localStorage.setItem("cart", JSON.stringify(cart));
+        }
+
+        function addToFavorites(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!favorites.some(fav => fav.id === productId)) {
+                favorites.push(product);
+                localStorage.setItem("favorites", JSON.stringify(favorites));
+            }
+        }
+
+        function searchProducts() {
+            const searchInput = document.getElementById("searchInput").value.toLowerCase();
+            const filteredProducts = products.filter(product =>
+                product.title.toLowerCase().includes(searchInput)
+            );
+            displayProducts(filteredProducts);
+        }
+
+        function filterByCategory(category) {
+            if (category === 'all') {
+                displayProducts(products);
+            } else {
+                const filteredProducts = products.filter(product =>
+                    product.category === category
+                );
+                displayProducts(filteredProducts);
+            }
+        }
+
+        function goToCart() {
+            window.location.href = 'cart.html'; 
+        }
+
+        function goToFavorites() {
+            window.location.href = 'favorites.html'; 
+        }
+
+       displayProducts();
+
+         // Go to Profile Page
+         function goToProfile() {
+            window.location.href = "profile.html"; // Link to the profile page
+        }
+    </script>
+
+    <!-- Footer Section -->
+<div class="footer">
+    <p>&copy; akhilaambati. All rights reserved.</p>
+    <p><a href="privacy-policy.html" style="color: white; text-decoration: none;">Privacy Policy</a> | <a href="terms-of-service.html" style="color: white; text-decoration: none;">Terms of Service</a></p>
+</div>
+</body>
+</html> 
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 20px;
+            background-color: #333;
+            color: white;
+        }
+        .navbar button {
+            background-color: #555;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+        }
+        .navbar button:hover {
+            background-color: #777;
+        }
+        .settings-info {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <div>
+            <button onclick="goToProfile()">Profile</button>
+            <button onclick="goToOrders()">Orders</button>
+            <button onclick="goToSettings()">Settings</button>
+            <button onclick="logout()">Logout</button>
+        </div>
+    </div>
+
+    <div class="settings-info">
+        <h2>Settings</h2>
+        <p>Your settings go here...</p>
+    </div>
+
+    <script>
+        // Navigation functions
+        function goToProfile() {
+            window.location.href = 'profile.html'; 
+        }
+
+        function goToOrders() {
+            window.location.href = 'orders.html'; 
+        }
+
+        function goToSettings() {
+            window.location.href = 'settings.html'; 
+        }
+
+        function logout() {
+            // Perform logout logic (e.g., clear session or redirect to login)
+            window.location.href = 'login.html';
+        }
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,168 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <style>
+        /* Basic Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        
+        .header {
+            background-color: #f028df;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 24px;
+        }
+
+        .form-container {
+            padding: 20px;
+            margin-top: 30px;
+            background-color: white;
+            margin: 0 auto;
+            width: 80%;
+            max-width: 500px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        .form-container input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .form-container button {
+            padding: 10px;
+            background-color: goldenrod;
+            border: none;
+            border-radius: 5px;
+            width: 100%;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .form-container button:hover {
+            background-color: #f028df;
+        }
+
+        .cart-summary {
+            margin-top: 30px;
+        }
+
+        .cart-summary table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .cart-summary th, .cart-summary td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        .cart-summary th {
+            background-color: #f028df;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">Checkout</div>
+
+    <div class="form-container">
+        <h2>Enter Your Details</h2>
+        <form id="checkoutForm">
+            <input type="text" id="name" placeholder="Full Name" required>
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="text" id="address" placeholder="Shipping Address" required>
+            <input type="text" id="phone" placeholder="Phone Number" required>
+            <button type="submit">Proceed to Payment</button>
+        </form>
+    </div>
+
+    <div class="cart-summary">
+        <h2>Your Cart</h2>
+        <table id="cartSummaryTable">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <script>
+        // Get cart from localStorage
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+        // Display cart summary
+        function displayCartSummary() {
+            const cartSummaryTable = document.getElementById("cartSummaryTable").getElementsByTagName("tbody")[0];
+            cartSummaryTable.innerHTML = "";
+
+            let totalPrice = 0;
+
+            cart.forEach(product => {
+                const row = document.createElement("tr");
+
+                const productCell = document.createElement("td");
+                productCell.textContent = product.title;
+                row.appendChild(productCell);
+
+                const priceCell = document.createElement("td");
+                priceCell.textContent = `₹${product.price.toFixed(2)}`;
+                row.appendChild(priceCell);
+
+                cartSummaryTable.appendChild(row);
+                totalPrice += product.price;
+            });
+
+            const row = document.createElement("tr");
+            const totalCell = document.createElement("td");
+            totalCell.colSpan = 2;
+            totalCell.textContent = `Total: ₹${totalPrice.toFixed(2)}`;
+            row.appendChild(totalCell);
+            cartSummaryTable.appendChild(row);
+        }
+
+        // Handle form submission
+        document.getElementById("checkoutForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            // Get the user details
+            const userDetails = {
+                name: document.getElementById("name").value,
+                email: document.getElementById("email").value,
+                address: document.getElementById("address").value,
+                phone: document.getElementById("phone").value,
+            };
+
+            // Save user details to localStorage
+            localStorage.setItem("userDetails", JSON.stringify(userDetails));
+
+            // Redirect to payment page (or next step)
+            window.location.href = "payment.html"; // Replace with actual payment page URL
+        });
+
+        // Display cart summary
+        displayCartSummary();
+    </script>
+</body>
+</html>
+
+
+
+
+

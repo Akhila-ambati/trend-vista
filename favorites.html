@@ -1,0 +1,144 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favorites</title>
+    <style>
+        /* Basic Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        .header {
+            background-color: #e928f0;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 24px;
+        }
+
+        .product-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .product-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            text-align: center;
+            height: 350px;
+            position: relative;
+        }
+
+        .product-card img {
+            max-width: 100%;
+            height: 200px;
+            object-fit: contain;
+            border-radius: 10px;
+        }
+
+        .product-card h3 {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+
+        .product-card p {
+            font-size: 16px;
+            color: #555;
+        }
+
+        .remove-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: goldenrod;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            padding: 8px;
+            cursor: pointer;
+        }
+
+        .remove-btn:hover {
+            background-color: rgb(242, 0, 255);
+        }
+
+        .cart-btn {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            background-color: goldenrod;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .cart-btn:hover {
+            background-color: #B37AC7;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">Your Favorites</div>
+
+    <div class="product-container" id="favoritesContainer"></div>
+
+    <button class="cart-btn" onclick="goToCart()">Go to Cart</button>
+
+    <script>
+        // Get favorites from localStorage
+        let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+        function displayFavorites() {
+            const favoritesContainer = document.getElementById("favoritesContainer");
+            favoritesContainer.innerHTML = ""; 
+
+            if (favorites.length === 0) {
+                favoritesContainer.innerHTML = "<p>No favorites added yet.</p>";
+                return;
+            }
+
+            favorites.forEach((product, index) => {
+                const productCard = document.createElement("div");
+                productCard.classList.add("product-card");
+
+                productCard.innerHTML = `
+                    <img src="${product.imageUrl}" alt="${product.title}">
+                    <h3>${product.title}</h3>
+                    <p>₹${product.price.toFixed(2)}</p>
+                    <button class="remove-btn" onclick="removeFromFavorites(${index})">X</button>
+                `;
+                favoritesContainer.appendChild(productCard);
+            });
+        }
+
+        function removeFromFavorites(index) {
+            // Remove the product from the favorites array
+            favorites.splice(index, 1);
+            
+            // Update localStorage
+            localStorage.setItem("favorites", JSON.stringify(favorites));
+
+            // Re-render the favorites list
+            displayFavorites();
+        }
+
+        function goToCart() {
+            window.location.href = 'cart.html'; 
+        }
+
+        displayFavorites();
+    </script>
+</body>
+</html>
